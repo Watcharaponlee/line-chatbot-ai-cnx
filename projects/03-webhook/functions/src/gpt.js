@@ -11,10 +11,10 @@ exports.receive = onRequest(async (request, response) => {
     if (request.method !== "POST") {
         return response.status(200).send("Method Not Allowed");
     }
-    const signature = crypto.createHmac('SHA256', process.env.LINE_MESSAGING_CHANNEL_SECRET).update(request.rawBody).digest('base64').toString();
-    if (request.headers['x-line-signature'] !== signature) {
-        return res.status(401).send('Unauthorized');
-    }
+    // const signature = crypto.createHmac('SHA256', process.env.LINE_MESSAGING_CHANNEL_SECRET).update(request.rawBody).digest('base64').toString();
+    // if (request.headers['x-line-signature'] !== signature) {
+    //     return res.status(401).send('Unauthorized');
+    // }
 
     const events = request.body.events
     for (const event of events) {
@@ -63,11 +63,11 @@ exports.history = onRequest(async (request, response) => {
     if (request.method !== "POST") {
         return response.status(200).send("Method Not Allowed");
     }
-    const signature = crypto.createHmac('SHA256', process.env.LINE_MESSAGING_CHANNEL_SECRET).update(request.rawBody).digest('base64').toString();
-    if (request.headers['x-line-signature'] !== signature) {
-        return res.status(401).send('Unauthorized');
-    }
-
+    // const signature = crypto.createHmac('SHA256', process.env.LINE_MESSAGING_CHANNEL_SECRET).update(request.rawBody).digest('base64').toString();
+    // if (request.headers['x-line-signature'] !== signature) {
+    //     return res.status(401).send('Unauthorized');
+    // }
+    
     const events = request.body.events
     for (const event of events) {
 
@@ -87,7 +87,7 @@ exports.history = onRequest(async (request, response) => {
                 let response = await gpt.chatHistory(event.message.text, userId);
 
                 const isCheckFormatJson = response.includes('json');
-
+                console.log('Test : ',isCheckFormatJson)
                 if (isCheckFormatJson) {
 
                     const cleanedString = response.replace(/json/g, '').replace(/```/g, '').trim();
@@ -117,6 +117,9 @@ exports.disc = onRequest(async (request, response) => {
     if (request.method !== "POST") {
         return response.status(200).send("Method Not Allowed");
     }
+
+    
+
     const signature = crypto.createHmac('SHA256', process.env.LINE_MESSAGING_CHANNEL_SECRET).update(request.rawBody).digest('base64').toString();
     if (request.headers['x-line-signature'] !== signature) {
         return res.status(401).send('Unauthorized');

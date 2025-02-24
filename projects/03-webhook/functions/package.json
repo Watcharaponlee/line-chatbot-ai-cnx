@@ -16,8 +16,7 @@
     "@google-cloud/storage": "^7.14.0",
     "@google/generative-ai": "^0.21.0",
     "axios": "^1.7.7",
-    "chart.js": "^4.4.6",
-    "chartjs-node-canvas": "^4.1.6",
+
     "firebase-admin": "^12.7.0",
     "firebase-functions": "^6.1.0",
     "node-cache": "^5.1.2",

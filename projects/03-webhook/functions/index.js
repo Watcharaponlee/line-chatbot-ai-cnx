@@ -6,10 +6,10 @@ setGlobalOptions({
 })
 
 exports.webhook = require('./src/webhook')
-// exports.message = require('./src/message')
+exports.message = require('./src/message')
 // exports.bucket = require('./src/bucket')
 // exports.random = require('./src/random')
-// exports.gpt = require('./src/gpt')
+exports.gpt = require('./src/gpt')
 // exports.gemini = require('./src/gemini')
 // exports.cronjob = require('./src/cronjob')
 // exports.game = require('./src/game')

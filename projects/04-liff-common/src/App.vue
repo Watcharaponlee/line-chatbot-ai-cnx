@@ -67,6 +67,7 @@
 
 <script>
 import liff from "@line/liff";
+import OpenWindowModule from "@line/liff/open-window";
 export default {
   beforeCreate() {
     liff
@@ -93,9 +94,10 @@ export default {
       lineVersion: null,
       isInClient: null,
       isApiAvailable: null,
-      isShowButton: false,
+      isShowSendMessage: false,
       message: "",
-      error: ""
+      error: "",
+      isShowButton: false,
     };
   },
   async mounted() {
@@ -131,6 +133,7 @@ export default {
           this.lineVersion = liff.getLineVersion();
           this.isInClient = liff.isInClient();
           if (liff.isInClient()) {
+            this.isShowSendMessage = true
             this.isShowButton = true
           }
           this.isApiAvailable = liff.isApiAvailable('shareTargetPicker'); // ตัวอย่างการตรวจสอบ API
@@ -139,9 +142,9 @@ export default {
       })
     },
 
-    // 
+    // ฟังก์ชันเปิด Browser และเปิด URL ที่กำหนด
     async openWindowModule() {
-      await liff.openWindow({
+      liff.openWindow({
         url: "https://line.me",
         external: true,
       });
